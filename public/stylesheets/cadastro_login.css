@@ -1,0 +1,114 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    background-color: #2d3b2e;
+    font: 1.25rem "Poppins", sans-serif;
+    color: #DCD7C9;
+    -webkit-font-smoothing: antialiased !important;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.illustration {
+    width: 50%;
+    background-image: url('/images/ilustracao.png');
+    background-size: 100% auto;
+    background-size: cover;
+    background-position: center;
+}
+
+.illustration img {
+    max-width: 80%;
+    height: auto;
+}
+
+.form-container {
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2d3b2e;
+    padding: 5rem 10rem;
+}
+
+.form-container-textfields {
+    width: 100%;
+    display: flex;
+}
+
+.form-container-textfields input {
+    background-color: #DCD7C9;
+    font: 1.25rem "Poppins", sans-serif;
+    padding: 1rem;
+}
+
+.logo {
+    width: 100%;
+}
+  
+.logo img{
+    display: flex;
+    align-items: flex-start;
+    width: 10rem;
+    height: auto;
+}
+  
+
+h2 {
+    font-weight: bolder;
+    font-size: 2rem;
+}
+
+form {
+    display: flex;
+    gap: 1.5rem;
+    flex-direction: column;
+    width: 100%;
+}
+
+input {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    padding: 1rem;
+    background-color: #A27B5C;
+    border: none;
+    border-radius: 5px;
+    color: #DCD7C9;
+    font: 1.25rem "Poppins", sans-serif;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+button:hover {
+    background-color: #a06d4b;
+}
+
+p {
+    margin-top: 10px;
+}
+
+a {
+    color: #A27B5C;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #a06d4b;
+}

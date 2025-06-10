@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro / Login</title>
+    <link rel="stylesheet" href="/stylesheets/cadastro_login.css">
+</head>
+<body>
+    <div class="container">
+        <div class="illustration"></div>
+        <div class="form-container">
+            <div class="logo">
+                <img src="/images/logo.svg" alt="Logo do Civic Watch">
+            </div>
+            <form id="auth-form" class="form-container-textfields">
+                <h2 id="form-title">Crie uma conta</h2>
+                <input type="text" id="name" placeholder="Nome" required>
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="password" id="password" placeholder="Crie uma senha" required>
+                <button type="submit">Criar Conta</button>
+            </form>
+            <p id="toggle-text">Já tem uma conta? <a href="#" id="toggle-link">Login</a></p>
+        </div>
+    </div>
+    <script src="/javascripts/cadastro_login.js"></script>
+</body>
+</html>
