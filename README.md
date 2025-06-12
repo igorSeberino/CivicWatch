@@ -1,4 +1,4 @@
-# 🧠 Quizzes Express - Server Side
+# 🧠 Civic Watch - Server Side
 
 Projeto desenvolvido para a matéria de Server Side do terceiro semestre do curso de Engenharia de Software - PUCSC
 
