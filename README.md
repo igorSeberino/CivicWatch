@@ -1,22 +1,28 @@
-CivicWatch - Plataforma de Monitoramento Político
-Visão Geral
+# 🧠 Civic Watch - Server Side
+
+Projeto desenvolvido para a matéria de Server Side do terceiro semestre do curso de Engenharia de Software - PUCSC
+
+## 📌 Descrição do projeto
+
 CivicWatch é uma plataforma digital voltada ao monitoramento de atividades de figuras políticas. Seu principal objetivo é permitir que cidadãos acompanhem propostas, votações e ações de políticos, promovendo maior transparência e engajamento cívico. Além disso, a plataforma permite a interação entre usuários e a moderação de conteúdos por administradores.
 
-Funcionalidades Principais
-Para Usuários
-Cadastro e autenticação de conta
+## 👨‍💻 Integrantes da equipe
 
-Exploração de perfis políticos organizados por categorias (ex: vereadores, deputados)
+- Igor Thiago Seberino
+- Adrian Cesar Gonçalves
 
-Favoritar políticos ou propostas para acompanhamento
+## 💻 Como executar o projeto
 
-Adicionar notas e comentários
+Instale as dependências do projeto:
 
-Avaliar atividades políticas
+```bash
+npm install
+```
 
-Para Administradores
-Dashboard com estatísticas de engajamento
+Execute o projeto:
 
-Cadastro e gerenciamento de perfis políticos e categorias
+```bash
+npm start
+```
 
-Moderação de conteúdos e controle de usuários
+Abra http://localhost:3000 no seu navegador para ver o resultado.
