@@ -25,4 +25,4 @@ Execute o projeto:
 npm start
 ```
 
-Abra http://localhost:3000 no seu navegador para ver o resultado.
+Abra http://localhost:3000 no seu navegador para ver o resultado
