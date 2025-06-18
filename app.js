@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -11,7 +12,7 @@ var homeRouter = require('./routes/home');
 var favoritosRouter = require('./routes/favoritos');
 var perfilUsuarioRouter = require('./routes/perfil_usuario');
 var pesquisarRouter = require('./routes/pesquisar');
-var propostaRouter = require('./routes/proposta')
+var propostaRouter = require('./routes/proposta');
 var usersRouter = require('./routes/users');
 var cadastro_loginRouter = require('./routes/cadastro_login');
 

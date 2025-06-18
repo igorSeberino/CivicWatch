@@ -1,9 +1,13 @@
 var express = require('express');
 var router = express.Router();
+const { carregarPropostas } = require('../models/proposta_model');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('home', { title: 'Civic Watch' });
+router.get('/', carregarPropostas, (req, res, next) => {
+  res.render('home', {
+     title: 'Civic Watch',
+     propostas: req.propostas
+    });
 });
 
 module.exports = router;
