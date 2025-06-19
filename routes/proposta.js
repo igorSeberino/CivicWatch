@@ -1,17 +1,19 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../config/database');
+const propostaModel = require('../models/proposta_model');
 
-router.get('/:id', verificarSessao, (req, res) => {
-  const propostaId = req.params.id;
+router.get('/:id', async function(req, res) {
+  try {
+    const propostaId = req.params.id;
+    const usuarioId = req.session.userId;
+    const proposta = await propostaModel.buscarPropostaPorId(propostaId, usuarioId);
 
-  db.query('SELECT * FROM propostas WHERE id = ?', [propostaId], (err, results) => {
-    if (err || results.length === 0) {
-      return res.status(404).json({ message: 'Proposta não encontrada' });
-    }
+    if (!proposta) return res.status(404).json({ message: 'Proposta não encontrada' });
 
-    res.json(results[0]);
-  });
+    res.render('proposta', { proposta: proposta[0] });
+  } catch (error) {
+    res.status(500).json({ message: 'Erro interno do servidor' });
+  }
 });
 
 module.exports = router;

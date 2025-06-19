@@ -28,6 +28,14 @@ router.post('/register', async (req, res) => {
                         return res.status(500).json({ message: 'Erro ao cadastrar usuário' });
                     }
                     res.status(201).json({ message: 'Usuário cadastrado com sucesso' });
+
+                    const user = results[0];
+
+                    req.session.userId = user.id;
+                    req.session.userName = user.name;
+                    res.session.userEmail = user.email;
+
+                    res.redirect('/home');
                 }
             );
         });
@@ -50,19 +58,26 @@ router.post('/login', async (req, res) => {
             }
 
             if (results.length === 0) {
+                console.log(email, password);
                 return res.status(401).json({ message: 'Email ou senha inválidos' });
             }
 
             const user = results[0];
 
+            req.session.userId = user.id;
+            req.session.userName = user.name;
+            req.session.userEmail = user.email;
+
+            res.redirect('/home');
+
             // Retorna os dados do usuário
-            res.json({
+            /* res.json({
                 user: {
                     id: user.id,
                     name: user.name,
                     email: user.email
                 }
-            });
+            }); */
         });
     } catch (error) {
         console.error('Erro no login:', error);

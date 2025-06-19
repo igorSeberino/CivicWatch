@@ -13,11 +13,11 @@
             <div class="logo">
                 <img src="/images/logo.svg" alt="Logo do Civic Watch">
             </div>
-            <form id="auth-form" class="form-container-textfields">
+            <form id="auth-form" method="POST" action="/users/cadastro" class="form-container-textfields">
                 <h2 id="form-title">Crie uma conta</h2>
-                <input type="text" id="name" placeholder="Nome" required>
-                <input type="email" id="email" placeholder="Email" required>
-                <input type="password" id="password" placeholder="Crie uma senha" required>
+                <input type="text" id="name" name="name" placeholder="Nome" required>
+                <input type="email" id="email" name="email" placeholder="Email" required>
+                <input type="password" id="password" name="password" placeholder="Crie uma senha" required>
                 <button type="submit">Criar Conta</button>
             </form>
             <p id="toggle-text">Já tem uma conta? <a href="#" id="toggle-link">Login</a></p>
