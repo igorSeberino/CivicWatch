@@ -10,7 +10,7 @@ router.get('/:id', async function(req, res) {
 
     if (!proposta) return res.status(404).json({ message: 'Proposta não encontrada' });
 
-    res.render('proposta', { proposta: proposta[0] });
+    res.render('proposta', { proposta });
   } catch (error) {
     res.status(500).json({ message: 'Erro interno do servidor' });
   }

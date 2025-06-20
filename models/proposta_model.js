@@ -56,29 +56,31 @@ function buscarPropostaPorId(propostaId, usuarioId) {
     db.query(sql, [usuarioId, usuarioId, propostaId], (err, resultados) => {
       if (err) return reject(err);
 
-      // Formata a data para DD/MM/AAAA
-      resultados.forEach(p => {
-        const data = new Date(p.data_criacao);
-        const dia = String(data.getDate()).padStart(2, '0');
-        const mes = String(data.getMonth() + 1).padStart(2, '0');
-        const ano = data.getFullYear();
-        p.data_criacao = `${dia}/${mes}/${ano}`;
+      const proposta = resultados[0];
 
-        // Transformando a descrição em array de parágrafos
-        p.descricao = p.descricao
-            .split(/\r?\n/)
-            .map(paragrafo => paragrafo.trim())
-            .filter(paragrafo => paragrafo.length > 0); // Remove linhas vazias
-      });
+      // Formatar data
+      const data = new Date(proposta.data_criacao);
+      const dia = String(data.getDate()).padStart(2, '0');
+      const mes = String(data.getMonth() + 1).padStart(2, '0');
+      const ano = data.getFullYear();
+      proposta.data_criacao = `${dia}/${mes}/${ano}`;
 
-      resolve(resultados);
+      // Transformar descrição em array de parágrafos
+      proposta.descricao = proposta.descricao
+        .split(/\r?\n/)
+        .map(paragrafo => paragrafo.trim())
+        .filter(paragrafo => paragrafo.length > 0);
+
+      proposta.media_avaliacoes = parseFloat(proposta.media_avaliacoes).toFixed(1);
+
+      resolve(proposta);
     });
   });
 }
 
 async function carregarPropostas(req, res, next) {
   try {
-    const usuarioId = req.user ? req.user.id : null;
+    const usuarioId = req.session.userId;
     const propostas = await buscarPropostas(usuarioId);
 
     propostas.forEach(p => {
