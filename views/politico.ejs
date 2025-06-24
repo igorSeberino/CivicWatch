@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="/stylesheets/output.css" rel="stylesheet">
-  <title>Civic Watch</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civic-Watch</title>
+    <link href="/stylesheets/output.css" rel="stylesheet">
 </head>
 <body class="bg-verde-claro font-display text-bege">
+
   <main class="flex justify-center">
-    
+
     <!-- Seção Lateral Esquerda -->
-    <div class="bg-verde-claro w-[25%] h-[100vh] fixed left-0 border-r-[.1px] border-marrom">
+    <div class="w-[25%] h-[100vh] fixed left-0 border-r-[.1px] border-marrom">
 
         <!-- Logo -->
         <div class="pt-[1rem] pl-[5rem]">
@@ -58,19 +59,49 @@
     </div>
 
     <!-- Principal -->
-    <div class="bg-verde-escuro grow pl-[25%] h-[100vh] text-center">
-      
-      <!-- Título -->
-      <div class="bg-verde-escuro">
+    <div class="bg-verde-claro grow pl-[25%] h-[100vh] text-center">
 
-            <h1 class="text-5xl font-bold pt-[5rem] pb-[1rem]">Página Inicial</h1>
+      <!-- Perfil Político -->
+        <div class=" bg-verde-escuro flex justify-between items-center p-[4rem] border-b-[.1px] border-marrom">
 
-      </div>
+          <!-- Infos -->
+            <div class="flex flex-col text-left gap-[2rem] text-2xl">
 
-      <!-- Propostas -->
-      <% propostas.forEach(p => { %>
+                <p><b>Cargo: </b><%= politico.cargo %></p>
+                <p><b>Partido: </b><%= politico.partido %></p>
+                <p><b>Estado/Cidade: </b><%= politico.estado %>/<%= politico.municipio %></p>
 
-      <div class="bg-verde-escuro flex flex-col p-[2rem] gap-[1rem] border-t-[.1px] border-marrom hover:cursor-pointer" name="proposta" data-id="<%= p.id %>">
+            </div>
+
+            <!-- Foto e Nome -->
+            <div class="text-3xl">
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="16rem" height="16rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user-icon lucide-circle-user text-bege"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg>
+
+                <p><b><%= politico.nome %></b></p>
+
+            </div>
+            
+            <!-- Curtida -->
+            <button class="hover:cursor-pointer">
+
+              <svg xmlns="http://www.w3.org/2000/svg" width="6rem" height="6rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart-icon lucide-heart text-bege"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+
+            </button>
+
+        </div>
+
+        <!-- Título Propostas -->
+        <div>
+
+          <h1 class="text-5xl font-bold justify-center p-[2rem]">Propostas</h1>
+
+        </div>
+
+        <% propostas.forEach(p => { %>
+
+          <!-- Proposta -->
+          <div class="bg-verde-escuro flex flex-col p-[2rem] gap-[1rem] border-t-[.1px] border-marrom hover:cursor-pointer" name="proposta" data-id="<%= p.id %>">
 
                     <!-- Político e Título -->
                     <div class="flex items-center gap-[2rem]">
@@ -84,9 +115,9 @@
                         <!-- Dados -->
                         <div class="flex flex-col items-start gap-[.5rem]">
 
-                            <p class="mb-[1rem] text-2xl"><b>Nome: </b><%= p.politico_nome %></p>
-                            <p><b>Cargo: </b><%= p.politico_cargo %></p>
-                            <p><b>Partido: </b><%= p.politico_partido %></p>
+                            <p class="mb-[1rem] text-2xl"><b>Nome: </b><%= politico.nome %></p>
+                            <p><b>Cargo: </b><%= politico.cargo %></p>
+                            <p><b>Partido: </b><%= politico.partido %></p>
 
                         </div>
 
@@ -205,16 +236,16 @@
 
                     </div>
 
-      </div>
+          </div>
 
-      <% }) %>
-        
+        <% }); %>
+
     </div>
 
-    <script src="/javascripts/secao_lateral.js"></script>
-    <script src="/javascripts/proposta.js"></script>
-    <script src="/javascripts/politico.js"></script>
-
   </main>
+
+  <script src="/javascripts/secao_lateral.js"></script>
+  <script src="/javascripts/proposta.js"></script>
+
 </body>
 </html>

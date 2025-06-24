@@ -6,8 +6,8 @@ const { carregarPropostas } = require('../models/proposta_model');
 router.get('/', carregarPropostas, (req, res, next) => {
   console.log(req.propostas);
   res.render('home', {
-     title: 'Civic Watch',
-     propostas: req.propostas
+    title: 'Civic Watch',
+    propostas: req.propostas
     });
 });
 
