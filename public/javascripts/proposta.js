@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const id = favoritar.dataset.id;
 
       try {
-        const response = await fetch(`/favoritos/${id}`, {
+        const response = await fetch(`/favoritos/proposta/${id}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
