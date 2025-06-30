@@ -4,45 +4,40 @@ const db = require('../config/database');
 
 // Rota de registro
 router.post('/register', async (req, res) => {
-    try {
-        const { name, email, password } = req.body;
+  try {
+    const { name, email, password } = req.body;
 
-        // Verifica se o usuário já existe
-        db.query('SELECT * FROM users WHERE email = ?', [email], (err, results) => {
-            if (err) {
-                console.error('Erro ao verificar usuário:', err);
-                return res.status(500).json({ message: 'Erro interno do servidor' });
-            }
+    db.query('SELECT * FROM users WHERE email = ?', [email], (err, results) => {
+      if (err) {
+        console.error('Erro ao verificar usuário:', err);
+        return res.status(500).json({ message: 'Erro interno do servidor' });
+      }
 
-            if (results.length > 0) {
-                return res.status(400).json({ message: 'Email já cadastrado' });
-            }
+      if (results.length > 0) {
+        return res.status(400).json({ message: 'Email já cadastrado' });
+      }
 
-            // Insere o novo usuário
-            db.query(
-                'INSERT INTO users (name, email, password) VALUES (?, ?, ?)',
-                [name, email, password],
-                (err, results) => {
-                    if (err) {
-                        console.error('Erro ao cadastrar usuário:', err);
-                        return res.status(500).json({ message: 'Erro ao cadastrar usuário' });
-                    }
-                    res.status(201).json({ message: 'Usuário cadastrado com sucesso' });
+      db.query(
+        'INSERT INTO users (name, email, password) VALUES (?, ?, ?)',
+        [name, email, password],
+        (err, results) => {
+          if (err) {
+            console.error('Erro ao cadastrar usuário:', err);
+            return res.status(500).json({ message: 'Erro ao cadastrar usuário' });
+          }
 
-                    const user = results[0];
+          req.session.userId = results.insertId;
+          req.session.userName = name;
+          req.session.userEmail = email;
 
-                    req.session.userId = user.id;
-                    req.session.userName = user.name;
-                    res.session.userEmail = user.email;
-
-                    res.redirect('/home');
-                }
-            );
-        });
-    } catch (error) {
-        console.error('Erro no registro:', error);
-        res.status(500).json({ message: 'Erro interno do servidor' });
-    }
+          res.redirect('/home');
+        }
+      );
+    });
+  } catch (error) {
+    console.error('Erro no registro:', error);
+    res.status(500).json({ message: 'Erro interno do servidor' });
+  }
 });
 
 // Rota de login
