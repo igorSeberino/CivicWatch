@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const botaoPaginaInicial = document.getElementById('pagina-inicial');
     const botaoFavoritos = document.getElementById('favoritos');
     const botaoPerfil = document.getElementById('perfil');
-    const botaoPesquisar = document.getElementById('pesquisar');
+    const botaoExplorar = document.getElementById('pesquisar');
 
     function redirecionar(rota) {
         try {
@@ -16,6 +16,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     botaoPaginaInicial.onclick = () => redirecionar('/home');
     botaoFavoritos.onclick = () => redirecionar('/favoritos');
-    botaoPerfil.onclick = () => redirecionar('/perfil_usuario');
-    botaoPesquisar.onclick = () => redirecionar('/pesquisar');
+    botaoPerfil.onclick = () => redirecionar('/perfil');
+    botaoExplorar.onclick = () => redirecionar('/explorar');
 });

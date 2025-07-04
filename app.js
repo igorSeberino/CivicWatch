@@ -10,8 +10,8 @@ var session = require('express-session');
 
 var homeRouter = require('./routes/home');
 var favoritosRouter = require('./routes/favoritos');
-var perfilUsuarioRouter = require('./routes/perfil_usuario');
-var pesquisarRouter = require('./routes/pesquisar');
+var perfilUsuarioRouter = require('./routes/perfil');
+var explorarRouter = require('./routes/explorar');
 var politicoRouter = require('./routes/politico');
 var propostaRouter = require('./routes/proposta');
 var usersRouter = require('./routes/users');
@@ -43,8 +43,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/home', homeRouter);
 app.use('/favoritos', favoritosRouter);
-app.use('/perfil_usuario', perfilUsuarioRouter);
-app.use('/pesquisar', pesquisarRouter);
+app.use('/perfil', perfilUsuarioRouter);
+app.use('/explorar', explorarRouter);
 app.use('/politico', politicoRouter);
 app.use('/proposta', propostaRouter);
 app.use('/users', usersRouter);

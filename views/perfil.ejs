@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Favoritos</title>
+    <title>Perfil de Usuário</title>
     <link href="/stylesheets/output.css" rel="stylesheet">
 </head>
 <body class="bg-verde-claro font-display text-bege">
@@ -11,7 +11,7 @@
   <main class="flex justify-center">
 
     <!-- Seção Lateral Esquerda -->
-    <div class="w-[25%] h-[100vh] fixed left-0 border-r-[.1px] border-marrom">
+    <div class="bg-verde-claro w-[25%] h-[100vh] fixed left-0 border-r-[.1px] border-marrom">
 
         <!-- Logo -->
         <div class="pt-[1rem] pl-[5rem]">
@@ -59,60 +59,34 @@
     </div>
 
     <!-- Principal -->
-    <div class="bg-verde-claro grow pl-[25%] h-[100vh] text-center">
+    <div class="bg-verde-escuro grow pl-[25%] h-[100vh] text-center">
 
-        <!-- Título -->
-        <div class="bg-verde-escuro">
+         <!--Perfil -->
+        <div class="flex justify-between py-[2rem] px-[4rem] items-center border-t-[.1px] border-marrom">
 
-            <h1 class="text-5xl font-bold pt-[5rem] pb-[1rem]">Favoritos</h1>
+            <!-- Dados do Usuário -->
+            <div class="flex items-center">
 
-        </div>
-
-        <!-- Seção Políticos -->
-        <div>
-
-            <!-- Título Políticos -->
-            <div>
-
-                <p class="text-3xl font-bold py-[2rem] border-t-[.1px]  border-marrom">Políticos Favoritos</p>
-
-            </div>
-
-            <!-- Políticos -->
-            <div>
-
-                <% politicos.forEach(p => { %>
-
-                    <% if (p.favoritou) { %>
-
-                        <div class="bg-verde-escuro flex items-center justify-between px-[3rem] py-[2rem] border-t-[.1px] border-marrom hover:cursor-pointer" name="politico" data-id="<%= p.id %>">
-
-                            <!-- Foto de Perfil -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="8rem" height="8rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user-icon lucide-circle-user"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg>
-
-                            <!-- Dados -->
-                            <div class="flex flex-col w-[70%] items-start gap-[.5rem]">
-
-                                <p class="mb-[1rem] text-2xl"><b>Nome:</b> <%= p.nome %></p>
-                                <p><b>Cargo:</b> <%= p.cargo %></p>
-                                <p><b>Partido:</b> <%= p.partido %></p>
-
-                            </div>
-                            
-                            <!-- Curtida -->
-                            <a class="hover:cursor-pointer" name="favoritar_politico" data-id="<%= p.id %>">
-
-                                <svg xmlns="http://www.w3.org/2000/svg" width="3rem" height="3rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart-icon lucide-heart text-red-700 fill-red-700"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-
-                            </a>
-
-                        </div>
-
-                    <% } %>
-
-                <% }) %>
+                <!-- Foto de Perfil e Usuário -->
+                <div>
+    
+                    <!-- Foto de Perfil -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12rem" height="12rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user-icon lucide-circle-user"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg>
+    
+                </div>
+    
+                <!-- Dados -->
+                <div class="flex flex-col pl-[4rem] gap-[1rem] items-start">
+        
+                    <p class="text-2xl"><b>Nome:</b> <%= user.name %></p>
+                    <p class="text-2xl"><b>Email:</b> <%= user.email %></p>
+                    <p class="text-2xl"><b>Data de cadastro:</b> <%= new Date(user.data_criacao).toLocaleDateString() %></p>
+        
+                </div>
 
             </div>
+
+            <button class="bg-marrom font-bold px-[2rem] py-[1rem] rounded-4xl hover:cursor-pointer" id="logout">Sair</button>
 
         </div>
 
@@ -120,12 +94,12 @@
         <div>
 
             <!-- Título Propostas -->
-            <div>
-
-                <p class="text-3xl font-bold py-[2rem] border-t-[.1px]  border-marrom">Propostas Favoritas</p>
-
+            <div class="bg-verde-claro">
+    
+                <p class="text-3xl font-bold py-[2rem] border-t-[.1px]  border-marrom">Propostas Favoritadas</p>
+    
             </div>
-
+ 
             <!-- Propostas -->
             <div>
 
@@ -263,6 +237,7 @@
 
             </div>
 
+
         </div>
 
     </div>
@@ -272,6 +247,7 @@
   <script src="/javascripts/secao_lateral.js"></script>
   <script src="/javascripts/proposta.js"></script>
   <script src="/javascripts/politico.js"></script>
+  <script src="/javascripts/perfil.js"></script>
 
 </body>
 </html>
