@@ -16,6 +16,7 @@ var politicoRouter = require('./routes/politico');
 var propostaRouter = require('./routes/proposta');
 var usersRouter = require('./routes/users');
 var cadastro_loginRouter = require('./routes/cadastro_login');
+var comentariosRouter = require('./routes/comentarios');
 
 var app = express();
 
@@ -49,6 +50,7 @@ app.use('/politico', politicoRouter);
 app.use('/proposta', propostaRouter);
 app.use('/users', usersRouter);
 app.use('/', cadastro_loginRouter);
+app.use('/comentarios', comentariosRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

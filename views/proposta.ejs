@@ -62,14 +62,14 @@
     <div class="bg-verde-escuro grow pl-[25%] h-[100vh] text-center">
 
          <!-- Título -->
-        <div class="bg-verde-claro">
+        <div class="bg-verde-claro border-b-[.1px] border-marrom">
 
             <h1 class="text-5xl font-bold pt-[5rem] pb-[1rem]"><%= proposta.titulo %></h1>
 
         </div>
 
         <!-- Dados e Foto de Perfil -->
-        <div class="flex p-[2rem] items-center border-t-[.1px] border-marrom">
+        <div class="flex p-[2rem] items-center border-b-[.1px] border-marrom">
 
             <!-- Foto de Perfil -->
             <svg xmlns="http://www.w3.org/2000/svg" width="8rem" height="8rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user-icon lucide-circle-user"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg>
@@ -87,7 +87,7 @@
         </div>
 
         <!-- Conteúdo -->
-        <div class="p-[2rem] border-t-[.1px] border-marrom">
+        <div class="p-[2rem] ">
 
             <% proposta.descricao.forEach(paragrafo => { %>
 
@@ -98,16 +98,16 @@
         </div>
 
         <!-- Botões -->
-        <div class="flex items-center justify-between p-[2rem]">
+        <div class="flex items-center justify-between p-[2rem] border-b-[.1px] border-marrom">
 
             <!-- Comentário -->
-            <div class="flex gap-[2rem]">
+            <form id="comentario" method="POST" action="/comentarios/<%= proposta.id %>" class="flex gap-[2rem]">
     
-            <input type="text" placeholder="Comentar" class="bg-verde-claro pl-[1rem] py-[1rem] outline-0 rounded-md w-[25rem]">
+                <input type="text" name="texto" placeholder="Comentar" class="bg-verde-claro pl-[1rem] py-[1rem] outline-0 rounded-md w-[25rem]" required>
+        
+                <button type="submit" class="bg-marrom font-bold px-[2rem] py-[1rem] rounded-4xl hover:cursor-pointer">Postar</button>
     
-            <button class="bg-marrom font-bold px-[2rem] py-[1rem] rounded-4xl hover:cursor-pointer">Postar</button>
-    
-            </div>
+            </form>
             
             <!-- Avaliação e Curtida -->
                         <div class="flex gap-[2rem]">
@@ -201,8 +201,10 @@
         <!-- Comentários -->
         <div>
 
+            <% comentarios.forEach(c => { %>
+
             <!-- Comentário -->
-            <div class="bg-verde-claro flex items-start p-[2rem] border-t-[.1px] border-marrom">
+            <div class="bg-verde-claro flex items-start p-[2rem] border-b-[.1px] border-marrom">
      
                 <!-- Foto de Perfil -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="5rem" height="5rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user-icon lucide-circle-user shrink-0"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg>
@@ -213,68 +215,18 @@
                     <!-- Usuário-->
                     <div class="flex gap-[.5rem]">
      
-                    <h2>User</h2>
-     
-                    <h3 class="opacity-50">@User</h3>
+                    <h2 class=""><%= c.usuario  %></h2>
      
                    </div>
      
                    <!-- Texto -->
-                   <p>É disso que a gente precisa! Já pagamos imposto demais e não vemos retorno. Parabéns pela iniciativa, Prefeito! Que mais políticos pensem no povo assim 👏👏</p>
+                   <p><%= c.comentario  %></p>
                    
                 </div>
      
             </div>
 
-            <!-- Comentário -->
-            <div class="bg-verde-claro flex items-start p-[2rem] border-t-[.1px] border-marrom">
-     
-                <!-- Foto de Perfil -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="5rem" height="5rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user-icon lucide-circle-user shrink-0"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg>
-     
-                <!-- Conteúdo -->
-                <div class="flex flex-col pl-[1rem] text-left gap-[1rem]">
-     
-                    <!-- Usuário-->
-                    <div class="flex gap-[.5rem]">
-     
-                    <h2>User</h2>
-     
-                    <h3 class="opacity-50">@User</h3>
-     
-                   </div>
-     
-                   <!-- Texto -->
-                   <p>"Finalmente um prefeito que tá olhando pro povo de verdade! Já tá mais do que na hora de alguém enfrentar esse sistema que só pesa no nosso bolso. Enquanto tem vereador que só aparece em época de eleição e aprova aumento de tudo, a gente aqui fora mal consegue pagar as contas. É bom ver que ainda tem gestor comprometido com a gente, com o comércio local e com quem trabalha duro todo dia. Espero que essa proposta vá pra frente e que sirva de exemplo pros outros, principalmente pros vereadores que deveriam estar do lado do povo também. Parabéns pela coragem e pela iniciativa, seguimos acompanhando e apoiando!</p>
-                   
-                </div>
-     
-            </div>
-
-            <!-- Comentário -->
-            <div class="bg-verde-claro flex items-start p-[2rem] border-t-[.1px] border-marrom">
-     
-                <!-- Foto de Perfil -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="5rem" height="5rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user-icon lucide-circle-user shrink-0"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg>
-     
-                <!-- Conteúdo -->
-                <div class="flex flex-col pl-[1rem] text-left gap-[1rem]">
-     
-                    <!-- Usuário-->
-                    <div class="flex gap-[.5rem]">
-     
-                    <h2>User</h2>
-     
-                    <h3 class="opacity-50">@User</h3>
-     
-                   </div>
-     
-                   <!-- Texto -->
-                   <p>Muito bom ver o prefeito pensando na gente de verdade! 👏 Enquanto alguns vereadores só se preocupam com interesse próprio 🙄, essa proposta mostra que ainda tem quem lute pelo povo 💪. Reduzir impostos é um passo importante pra ajudar quem trabalha e movimenta a cidade 🛍️💼. Parabéns pela iniciativa! 👏🔥</p>
-                   
-                </div>
-     
-            </div>
+            <% }); %>
 
         </div>
 

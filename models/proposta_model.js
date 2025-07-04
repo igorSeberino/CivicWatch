@@ -30,6 +30,36 @@ function buscarPropostas(usuarioId) {
   });
 }
 
+function buscarComentarios(propostaId) {
+  const sql = `
+    SELECT 
+      comentarios.texto AS comentario, 
+      users.name AS usuario
+    FROM comentarios
+    JOIN users ON comentarios.user_id = users.id
+    WHERE comentarios.proposta_id = ?
+    `;
+
+  return new Promise((resolve, reject) => {
+    db.query(sql, [propostaId], (err, resultados) => {
+      if (err) reject(err);
+      else resolve(resultados);
+    });
+  });
+}
+
+async function carregarComentarios(req, res, next) {
+  try {
+    const propostaId = req.params.id;
+    const comentarios = await buscarComentarios(propostaId);
+
+    req.comentarios = comentarios;
+    next();
+  } catch (err) {
+    next(err);
+  }
+}
+
 function buscarPropostaPorId(propostaId, usuarioId) {
   const sql = `
     SELECT
@@ -159,5 +189,6 @@ async function carregarPropostasPorPolitico(req, res, next) {
 module.exports = {
     buscarPropostaPorId,
     carregarPropostas,
-    carregarPropostasPorPolitico
+    carregarPropostasPorPolitico,
+    carregarComentarios
 };

@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const propostaModel = require('../models/proposta_model');
+const { carregarComentarios } = require('../models/proposta_model');
 
-router.get('/:id', async function(req, res) {
+router.get('/:id', carregarComentarios, async function(req, res) {
   try {
     const propostaId = req.params.id;
     const usuarioId = req.session.userId;
@@ -10,7 +11,10 @@ router.get('/:id', async function(req, res) {
 
     if (!proposta) return res.status(404).json({ message: 'Proposta não encontrada' });
 
-    res.render('proposta', { proposta });
+    res.render('proposta', { 
+      proposta,
+      comentarios: req.comentarios
+     });
   } catch (error) {
     res.status(500).json({ message: 'Erro interno do servidor' });
   }
