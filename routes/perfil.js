@@ -14,7 +14,8 @@ router.get('/', carregarPropostas, async (req, res) => {
 
         res.render('perfil', {
            user: perfil,
-           propostas: req.propostas
+           propostas: req.propostas,
+           tipo: req.session.userTipo
           });
     } catch (err) {
         console.error('Erro ao carregar perfil:', err);

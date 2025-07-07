@@ -8,7 +8,8 @@ router.get('/', carregarPropostas, carregarPoliticos, (req, res, next) => {
   res.render('favoritos', {
     title: 'Favoritos',
     propostas: req.propostas,
-    politicos: req.politicos
+    politicos: req.politicos,
+    tipo: req.session.userTipo
     });
 });
 

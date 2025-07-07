@@ -6,7 +6,8 @@ router.get('/:cargo?', carregarPoliticos, async (req, res, next) => {
   res.render('explorar', { 
     title: 'Explorar',
     politicos: req.politicos,
-    cargo: req.params.cargo
+    cargo: req.params.cargo,
+    tipo: req.session.userTipo
   });
 });
 

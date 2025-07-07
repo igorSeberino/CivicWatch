@@ -4,9 +4,11 @@ const { carregarPropostas } = require('../models/proposta_model');
 
 /* GET home page. */
 router.get('/', carregarPropostas, (req, res, next) => {
+  console.log(req.propostas);
   res.render('home', {
     title: 'Civic Watch',
-    propostas: req.propostas
+    propostas: req.propostas,
+    tipo: req.session.userTipo
     });
 });
 

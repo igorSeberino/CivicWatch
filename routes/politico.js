@@ -14,7 +14,8 @@ router.get('/:id', carregarPropostasPorPolitico, async function(req, res) {
 
     res.render('politico', {
         politico,
-        propostas: req.propostas
+        propostas: req.propostas,
+        tipo: req.session.userTipo
     });
   } catch (error) {
     res.status(500).json({ message: 'Erro interno do servidor' });

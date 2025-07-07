@@ -8,12 +8,14 @@ router.get('/:id', carregarComentarios, async function(req, res) {
     const propostaId = req.params.id;
     const usuarioId = req.session.userId;
     const proposta = await propostaModel.buscarPropostaPorId(propostaId, usuarioId);
+    console.log(req.comentarios);
 
     if (!proposta) return res.status(404).json({ message: 'Proposta não encontrada' });
 
     res.render('proposta', { 
       proposta,
-      comentarios: req.comentarios
+      comentarios: req.comentarios,
+      tipo: req.session.userTipo
      });
   } catch (error) {
     res.status(500).json({ message: 'Erro interno do servidor' });
