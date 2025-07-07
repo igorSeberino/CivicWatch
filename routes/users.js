@@ -53,7 +53,6 @@ router.post('/login', async (req, res) => {
             }
 
             if (results.length === 0) {
-                console.log(email, password);
                 return res.status(401).json({ message: 'Email ou senha inválidos' });
             }
 

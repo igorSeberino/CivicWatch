@@ -8,7 +8,6 @@ router.get('/:id', carregarComentarios, async function(req, res) {
     const propostaId = req.params.id;
     const usuarioId = req.session.userId;
     const proposta = await propostaModel.buscarPropostaPorId(propostaId, usuarioId);
-    console.log(req.comentarios);
 
     if (!proposta) return res.status(404).json({ message: 'Proposta não encontrada' });
 

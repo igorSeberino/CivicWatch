@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const botaoDashboard = document.getElementById('dashboard');
     const botaoCadastro = document.getElementById('cadastro');
     const botaoModeracao = document.getElementById('moderacao');
+    const excluirPerfil = document.querySelectorAll('[name="excluirPerfil"]');
 
     function redirecionar(rota) {
         try {
@@ -16,4 +17,16 @@ document.addEventListener('DOMContentLoaded', function() {
     botaoDashboard.onclick = () => redirecionar('/admin/dashboard');
     botaoCadastro.onclick = () => redirecionar('/admin/cadastro');
     botaoModeracao.onclick = () => redirecionar('/admin/moderacao');
+    excluirPerfil.forEach(botao => {
+        botao.addEventListener('click', (e) => {
+            fetch(`/admin/excluirperfil/${botao.id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+            });
+            botao.disabled = true;
+            botao.innerHTML = '<p>Perfil excluído</p>'
+        });
+    });
 });

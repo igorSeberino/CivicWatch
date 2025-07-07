@@ -69,7 +69,7 @@
 
     </div>
 
-    <div class="bg-verde-escuro grow pl-[25%] h-[100vh] text-center">
+    <div class="bg-verde-escuro grow min-h-[100vh] pl-[25%] text-center">
 
       <div class="bg-verde-escuro">
 
@@ -88,15 +88,26 @@
         </div>
 
         <div class="flex justify-between border-b-[.1px] border-marrom">
-          <button class="bg-verde-claro w-full py-[1rem] border-r-[.1px] border-marrom" id="politico">Perfil Político</button>
-          <button class="w-full py-[1rem]" id="categoria">Categoria de Político</button>
+          <button class="bg-verde-claro w-full py-[1rem] border-r-[.1px] border-marrom hover:cursor-pointer" id="politico">Perfil Político</button>
+          <button class="w-full py-[1rem] hover:cursor-pointer" id="categoria">Categoria de Político</button>
         </div>
         <form id="auth-form" method="POST" action="/cadastro/politico" class="w-full flex flex-col items-center gap-[1.5rem] p-[2rem]">
             <h2 class="font-bold text-2xl" id="form-title">Crie um perfil político</h2>
             <input class="bg-bege text-black p-[1rem] border-none rounded-md w-[40%]" type="text" id="nome" name="nome" placeholder="Nome" required>
             <input class="bg-bege text-black p-[1rem] border-none rounded-md w-[40%]" type="text" id="partido" name="partido" placeholder="Partido" required>
-            <input class="bg-bege text-black p-[1rem] border-none rounded-md w-[40%]" type="text" id="estado" name="estado" placeholder="Estado" required>
+            <input class="bg-bege text-black p-[1rem] border-none rounded-md w-[40%]" type="text" id="estado" name="estado" placeholder="Estado(Sigla)" required>
             <input class="bg-bege text-black p-[1rem] border-none rounded-md w-[40%]" type="text" id="municipio" name="municipio" placeholder="Município" required>
+            <input class="hidden" type="text" id="" name="categoria" required>
+            <div class="flex flex-col w-[40%] text-left gap-[1.5rem]">
+              <p class="font-bold text-2xl" id="categoriaTitulo">Categoria: </p>
+
+              <% categorias.forEach(c => { %>
+
+              <button class="w-full py-[.5rem] border-b-[.1px] border-t-[.1px] border-marrom hover:cursor-pointer" name="categoriaButton" id="<%= c.id %>"><%= c.nome %></button>
+
+              <% }); %>
+              
+            </div>
             <button class="p-[1rem] font-medium bg-marrom border-none rounded-md text-bege uppercase hover:cursor-pointer" type="submit" id="submitButton">Criar Político</button>
         </form>
 
@@ -109,6 +120,91 @@
           <button class="bg-verde-claro text-2xl flex justify-center hover:cursor-pointer py-[1rem] text-center w-full" id="moderacao" name="botao-aba">Moderação</button>
 
         </div>
+
+        <form id="buscaPerfilForm" method="GET" action="/admin/moderacao" class="w-full flex items-center gap-[1.5rem] p-[2rem]">
+            <input class="bg-bege text-black p-[1rem] border-none rounded-md w-full" type="text" id="busca" name="busca" placeholder="Pesquise por nome" required>
+            <button class="p-[1rem] font-medium bg-marrom border-none rounded-md text-bege uppercase hover:cursor-pointer" type="submit" id="submitButton">Pesquisar</button>
+        </form>
+
+        <% perfis.forEach(p => { %>
+
+          <% if (p.tipo === 'usuario') { %>
+
+            <% if (busca) { %>
+
+              <% if (p.name.includes(busca)) { %>
+
+            <!-- Perfil -->
+            <div class="bg-verde-claro flex items-center justify-between p-[2rem] border-b-[.1px] border-marrom">
+     
+              <div class="flex items-center">
+
+                <!-- Foto de Perfil -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="5rem" height="5rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user-icon lucide-circle-user shrink-0"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg>
+     
+                <!-- Conteúdo -->
+                <div class="flex flex-col pl-[1rem] text-left gap-[1rem]">
+     
+                    <!-- Usuário-->
+                    <div class="flex flex-col gap-[.5rem]">
+     
+                    <h2 class=""><%= p.name %></h2>
+                    <p><%= p.email %></p>
+     
+                   </div>
+                   
+                </div>
+                
+              </div>
+
+              <button id="<%= p.id %>" name="excluirPerfil">
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash2-icon lucide-trash-2 text-bege"><path d="M10 11v6"/><path d="M14 11v6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+
+              </button>
+     
+            </div>
+
+            <% } %>
+
+          <% } else { %>
+
+             <!-- Perfil -->
+            <div class="bg-verde-claro flex items-center justify-between p-[2rem] border-b-[.1px] border-marrom">
+     
+              <div class="flex items-center">
+
+                <!-- Foto de Perfil -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="5rem" height="5rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user-icon lucide-circle-user shrink-0"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg>
+     
+                <!-- Conteúdo -->
+                <div class="flex flex-col pl-[1rem] text-left gap-[1rem]">
+     
+                    <!-- Usuário-->
+                    <div class="flex flex-col gap-[.5rem]">
+     
+                    <h2 class=""><%= p.name %></h2>
+                    <p><%= p.email %></p>
+     
+                   </div>
+                   
+                </div>
+                
+              </div>
+
+              <button id="<%= p.id %>" name="excluirPerfil">
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash2-icon lucide-trash-2 text-bege"><path d="M10 11v6"/><path d="M14 11v6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+
+              </button>
+     
+            </div>
+
+          <% } %>
+
+        <% } %>
+
+        <% }); %>
 
       <% } else { %>
 

@@ -23,6 +23,20 @@ const buscarPerfilPorId = async (usuarioId) => {
   });
 };
 
+const buscarTodosOsPerfis = async () => {
+    const sql=`
+    SELECT * FROM users;
+    `;
+
+    return new Promise((resolve, reject) => {
+    db.query(sql, (err, resultados) => {
+      if (err) return reject(err);
+      resolve(resultados);
+    });
+  });
+};
+
 module.exports = {
-    buscarPerfilPorId
+    buscarPerfilPorId,
+    buscarTodosOsPerfis
 };

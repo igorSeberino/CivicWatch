@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
   const propostas = document.querySelectorAll('[name="proposta"]');
   const favoritarButton = document.querySelectorAll('[name="favoritar"]');
+  const excluirComentario = document.querySelectorAll('[name="excluirComentario"]');
 
   propostas.forEach(proposta => {
     proposta.addEventListener('click', (e) => {
@@ -38,6 +39,19 @@ document.addEventListener('DOMContentLoaded', function() {
       } catch (err) {
         alert('Erro na requisição: ' + err.message);
       }
+    });
+  });
+
+  excluirComentario.forEach(botao => {
+    botao.addEventListener('click', async () => {
+      const id = botao.id;
+      fetch(`/comentarios/excluir/${id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      botao.innerHTML = '<p>Comentário excluído</p>';
     });
   });
   

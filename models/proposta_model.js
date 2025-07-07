@@ -34,7 +34,8 @@ function buscarComentarios(propostaId) {
   const sql = `
     SELECT 
       comentarios.texto AS comentario, 
-      users.name AS usuario
+      users.name AS usuario,
+      comentarios.id AS id
     FROM comentarios
     JOIN users ON comentarios.user_id = users.id
     WHERE comentarios.proposta_id = ?

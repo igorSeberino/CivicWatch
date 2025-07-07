@@ -13,7 +13,6 @@ connection.connect((err) => {
         console.error('Error connecting to the database:', err);
         return;
     }
-    console.log('Successfully connected to the database');
 });
 
 module.exports = connection; 

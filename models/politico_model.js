@@ -67,7 +67,24 @@ async function carregarPoliticos(req, res, next) {
   }
 }
 
+function buscarCategorias(usuarioId) {
+  const sql = `
+    SELECT 
+      c.nome,
+      c.id
+    FROM categorias_politicos c
+  `;
+
+  return new Promise((resolve, reject) => {
+    db.query(sql, (err, resultados) => {
+      if (err) reject(err);
+      else resolve(resultados);
+    });
+  });
+}
+
 module.exports = {
   buscarPoliticoPorId,
-  carregarPoliticos
+  carregarPoliticos,
+  buscarCategorias
 };

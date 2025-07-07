@@ -8,7 +8,6 @@ router.get('/:id', carregarPropostasPorPolitico, async function(req, res) {
     const politicoId = req.params.id;
     const usuarioId = req.session.userId;
     const politico = await buscarPoliticoPorId(politicoId, usuarioId);
-    console.log(politico);
 
     if (!politico) return res.status(404).json({ message: 'Politico não encontrado' });
 
