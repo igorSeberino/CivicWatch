@@ -5,6 +5,7 @@ const { carregarPropostas } = require('../models/proposta_model');
 const { carregarPoliticos } = require('../models/politico_model');
 
 router.get('/', carregarPropostas, carregarPoliticos, (req, res, next) => {
+  console.log(req.politicos);
   res.render('favoritos', {
     title: 'Favoritos',
     propostas: req.propostas,

@@ -73,7 +73,7 @@
     <div class="bg-verde-escuro grow pl-[25%] h-[100vh] text-center">
 
          <!--Perfil -->
-        <div class="flex justify-between py-[2rem] px-[4rem] items-center border-t-[.1px] border-marrom">
+        <div class="flex justify-between py-[2rem] px-[4rem] items-center border-b-[.1px] border-marrom">
 
             <!-- Dados do Usuário -->
             <div class="flex items-center">
@@ -107,16 +107,20 @@
             <!-- Título Propostas -->
             <div class="bg-verde-claro">
     
-                <p class="text-3xl font-bold py-[2rem] border-t-[.1px]  border-marrom">Propostas Favoritadas</p>
+                <p class="text-3xl font-bold py-[2rem] border-b-[.1px]  border-marrom">Propostas Favoritadas</p>
     
             </div>
  
             <!-- Propostas -->
             <div>
 
+                <% let propostasNum = 0; %>
+
                 <% propostas.forEach(p => { %>
 
                     <% if(p.favoritou === 1) { %>
+
+                        <% propostasNum += 1; %>
 
                         <div class="bg-verde-escuro flex flex-col p-[2rem] gap-[1rem] border-t-[.1px] border-marrom hover:cursor-pointer" name="proposta" data-id="<%= p.id %>">
 
@@ -244,7 +248,18 @@
 
                     <% } %>
 
-                <% }) %>
+                <% }); %>
+
+                <% if (propostasNum === 0) { %>
+
+                    <div class="bg-verde-escuro flex items-center justify-center px-[3rem] py-[2rem]">
+
+                        <p>Você ainda não tem propostas favoritadas.</p>
+
+                    </div>
+
+
+                <% } %>
 
             </div>
 

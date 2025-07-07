@@ -212,46 +212,60 @@
         <!-- Comentários -->
         <div>
 
+            <% let comentariosNum = 0; %>
+
             <% comentarios.forEach(c => { %>
 
-            <!-- Comentário -->
-            <div class="bg-verde-claro flex items-center justify-between p-[2rem] border-b-[.1px] border-marrom">
-     
-                <div class="flex items-center">
+                <% comentariosNum += 1; %>
 
-                    <!-- Foto de Perfil -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="5rem" height="5rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user-icon lucide-circle-user shrink-0"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg>
-         
-                    <!-- Conteúdo -->
-                    <div class="flex flex-col pl-[1rem] text-left gap-[1rem]">
-         
-                        <!-- Usuário-->
-                        <div class="flex gap-[.5rem]">
-         
-                        <h2 class=""><%= c.usuario  %></h2>
-         
-                       </div>
-         
-                       <!-- Texto -->
-                       <p><%= c.comentario  %></p>
-                       
+                <!-- Comentário -->
+                <div class="bg-verde-claro flex items-center justify-between p-[2rem] border-b-[.1px] border-marrom">
+        
+                    <div class="flex items-center">
+
+                        <!-- Foto de Perfil -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="5rem" height="5rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user-icon lucide-circle-user shrink-0"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg>
+            
+                        <!-- Conteúdo -->
+                        <div class="flex flex-col pl-[1rem] text-left gap-[1rem]">
+            
+                            <!-- Usuário-->
+                            <div class="flex gap-[.5rem]">
+            
+                            <h2 class=""><%= c.usuario  %></h2>
+            
+                        </div>
+            
+                        <!-- Texto -->
+                        <p><%= c.comentario  %></p>
+                        
+                        </div>
+
                     </div>
+
+                    <% if (tipo === 'admin') { %>
+
+                        <button class="hover:cursor-pointer" id="<%= c.id %>" name="excluirComentario">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash2-icon lucide-trash-2 text-bege"><path d="M10 11v6"/><path d="M14 11v6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+
+                        </button>
+
+                    <% } %>
+        
+                </div>
+
+            <% }); %>
+
+            <% if (comentariosNum === 0) { %>
+
+                <div class="bg-verde-escuro flex items-center justify-center px-[3rem] py-[2rem]">
+
+                    <p>Essa proposta ainda não tem comentários.</p>
 
                 </div>
 
-                <% if (tipo === 'admin') { %>
-
-                    <button class="hover:cursor-pointer" id="<%= c.id %>" name="excluirComentario">
-
-                        <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash2-icon lucide-trash-2 text-bege"><path d="M10 11v6"/><path d="M14 11v6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-
-                    </button>
-
-                <% } %>
-     
-            </div>
-
-            <% }); %>
+            <% } %>
 
         </div>
 

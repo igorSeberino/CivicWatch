@@ -70,10 +70,10 @@
     </div>
 
     <!-- Principal -->
-    <div class="bg-verde-claro grow pl-[25%] h-[100vh] text-center">
+    <div class="bg-verde-escuro grow pl-[25%] h-[100vh] text-center">
 
         <!-- Título -->
-        <div class="bg-verde-escuro">
+        <div class="bg-verde-escuro border-b-[.1px]  border-marrom">
 
             <h1 class="text-5xl font-bold pt-[5rem] pb-[1rem]">Favoritos</h1>
 
@@ -85,18 +85,22 @@
             <!-- Título Políticos -->
             <div>
 
-                <p class="text-3xl font-bold py-[2rem] border-t-[.1px]  border-marrom">Políticos Favoritos</p>
+                <p class="bg-verde-claro text-3xl font-bold py-[2rem] border-b-[.1px]  border-marrom">Políticos Favoritos</p>
 
             </div>
 
             <!-- Políticos -->
             <div>
 
+                <% let politicosNum = 0; %>
+
                 <% politicos.forEach(p => { %>
 
                     <% if (p.favoritou) { %>
 
-                        <div class="bg-verde-escuro flex items-center justify-between px-[3rem] py-[2rem] border-t-[.1px] border-marrom hover:cursor-pointer" name="politico" data-id="<%= p.id %>">
+                        <% politicosNum += 1; %>
+
+                        <div class="bg-verde-escuro flex items-center justify-between px-[3rem] py-[2rem] border-b-[.1px] border-marrom hover:cursor-pointer" name="politico" data-id="<%= p.id %>">
 
                             <!-- Foto de Perfil -->
                             <svg xmlns="http://www.w3.org/2000/svg" width="8rem" height="8rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user-icon lucide-circle-user"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg>
@@ -123,6 +127,16 @@
 
                 <% }) %>
 
+                <% if (politicosNum === 0) { %>
+
+                    <div class="bg-verde-escuro flex items-center justify-center px-[3rem] py-[2rem] border-b-[.1px] border-marrom">
+
+                        <p>Você ainda não tem políticos favoritados.</p>
+
+                    </div>
+
+                <% } %>
+
             </div>
 
         </div>
@@ -133,18 +147,22 @@
             <!-- Título Propostas -->
             <div>
 
-                <p class="text-3xl font-bold py-[2rem] border-t-[.1px]  border-marrom">Propostas Favoritas</p>
+                <p class="bg-verde-claro text-3xl font-bold py-[2rem] border-b-[.1px]  border-marrom">Propostas Favoritas</p>
 
             </div>
 
             <!-- Propostas -->
             <div>
 
+                <% let propostasNum = 0; %>
+
                 <% propostas.forEach(p => { %>
 
                     <% if(p.favoritou === 1) { %>
 
-                        <div class="bg-verde-escuro flex flex-col p-[2rem] gap-[1rem] border-t-[.1px] border-marrom hover:cursor-pointer" name="proposta" data-id="<%= p.id %>">
+                        <% propostasNum += 1; %>
+
+                        <div class="bg-verde-escuro flex flex-col p-[2rem] gap-[1rem] border-b-[.1px] border-marrom hover:cursor-pointer" name="proposta" data-id="<%= p.id %>">
 
                                 <!-- Político e Título -->
                                 <div class="flex items-center gap-[2rem]">
@@ -271,6 +289,16 @@
                     <% } %>
 
                 <% }) %>
+
+                <% if (propostasNum === 0) { %>
+
+                    <div class="bg-verde-escuro flex items-start justify-center px-[3rem] py-[2rem]">
+
+                        <p>Você ainda não tem propostas favoritadas.</p>
+
+                    </div>
+
+                <% } %>
 
             </div>
 
