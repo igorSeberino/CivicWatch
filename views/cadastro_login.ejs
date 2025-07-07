@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro / Login</title>
-    <link rel="stylesheet" href="/stylesheets/cadastro_login.css">
+    <title id="titulo">Cadastro</title>
+    <link rel="stylesheet" href="/stylesheets/output.css">
 </head>
 <body>
-    <div class="container">
-        <div class="illustration"></div>
-        <div class="form-container">
-            <div class="logo">
-                <img src="/images/logo.svg" alt="Logo do Civic Watch">
+    <div class="flex w-[100%] text-bege">
+        <div class="w-[50%] bg-[url('/images/ilustracao.png')] bg-cover bg-center"></div>
+        <div class="w-[50%] h-[100vh] flex flex-col justify-between items-center bg-verde-escuro px-[5rem] py-[2rem]">
+            <div class="w-[100%]">
+                <img class="flex items-start w-[10rem] h-auto" src="/images/logo.svg" alt="Logo do Civic Watch">
             </div>
-            <form id="auth-form" method="POST" action="/users/cadastro" class="form-container-textfields">
-                <h2 id="form-title">Crie uma conta</h2>
-                <input type="text" id="name" name="name" placeholder="Nome" required>
-                <input type="email" id="email" name="email" placeholder="Email" required>
-                <input type="password" id="password" name="password" placeholder="Crie uma senha" required>
-                <button type="submit">Criar Conta</button>
+            <form id="auth-form" method="POST" action="/users/cadastro" class="w-full flex flex-col items-center gap-[1.5rem] p-[2rem] pt-0">
+                <h2 class="font-bold text-4xl" id="form-title">Crie uma conta</h2>
+                <input class="bg-bege text-black p-[1rem] border-none rounded-md w-[75%]" type="text" id="name" name="name" placeholder="Nome" required>
+                <input class="bg-bege text-black p-[1rem] border-none rounded-md w-[75%]" type="email" id="email" name="email" placeholder="Email" required>
+                <input class="bg-bege text-black p-[1rem] border-none rounded-md w-[75%]" type="password" id="password" name="password" placeholder="Crie uma senha" required>
+                <button class="p-[1rem] font-medium bg-marrom border-none rounded-md text-bege uppercase w-[75%] hover:cursor-pointer" type="submit">Criar Conta</button>
             </form>
-            <p id="toggle-text">Já tem uma conta? <a href="#" id="toggle-link">Login</a></p>
+            <p class="text-marrom items-start" id="toggle-text">Já tem uma conta? <a href="#" id="toggle-link">Login</a></p>
         </div>
     </div>
     <script src="/javascripts/cadastro_login.js"></script>

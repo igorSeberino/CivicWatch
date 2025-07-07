@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil de Usuário</title>
+    <title><%= user.name %></title>
     <link href="/stylesheets/output.css" rel="stylesheet">
 </head>
 <body class="bg-verde-claro font-display text-bege">
@@ -122,7 +122,7 @@
 
                         <% propostasNum += 1; %>
 
-                        <div class="bg-verde-escuro flex flex-col p-[2rem] gap-[1rem] border-t-[.1px] border-marrom hover:cursor-pointer" name="proposta" data-id="<%= p.id %>">
+                        <div class="bg-verde-escuro flex flex-col p-[2rem] gap-[1rem] border-b-[.1px] border-marrom hover:cursor-pointer" name="proposta" data-id="<%= p.id %>">
 
                                 <!-- Político e Título -->
                                 <div class="flex items-center gap-[2rem]">

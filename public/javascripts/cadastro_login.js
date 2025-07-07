@@ -5,10 +5,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const button = document.querySelector('button');
     const toggleText = document.getElementById('toggle-text');
     const form = document.getElementById('auth-form');
+    const docTitle = document.getElementById('titulo');
     let isLogin = false;
 
     function updateForm() {
         if (isLogin) {
+            docTitle.innerText = "Login";
             form.setAttribute('action', '/users/login');
             form.setAttribute('method', 'POST');
             title.innerText = "Faça login em sua conta";
@@ -17,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
             button.innerText = "Entrar";
             toggleText.innerHTML = "Não tem uma conta? <a href='#' id='toggle-link'>Cadastre-se</a>";
         } else {
+            docTitle.innerText = "Cadastro";
             form.setAttribute('action', '/users/register');
             form.setAttribute('method', 'POST');
             title.innerText = "Crie uma conta";
