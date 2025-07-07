@@ -5,14 +5,13 @@ const db = require("../config/database");
 router.post('/:id', async (req, res) => {
   const userId = req.session.userId;
   const propostaId = req.params.id;
-  const texto = req.body.texto;
+  const nota = req.body.nota;
 
   if (!userId) return res.status(401).json({ erro: 'Não autorizado' });
 
-  db.query('INSERT INTO comentarios (user_id, proposta_id, texto) VALUES (?, ?, ?)', [userId, propostaId, texto], err => {
-      if (err) return res.status(500).json({ erro: 'Erro ao adicionar comentário' });
-      return res.redirect(`/proposta/${propostaId}`);
-  });
+    db.query('INSERT INTO avaliacoes (user_id, proposta_id, nota) VALUES (?, ?, ?)', [userId, propostaId, nota], err => {
+        if (err) return res.status(500).json({ erro: 'Erro ao adicionar avaliação' });
+    });
 });
 
 module.exports = router;

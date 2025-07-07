@@ -19,6 +19,7 @@ var cadastro_loginRouter = require('./routes/cadastro_login');
 var comentariosRouter = require('./routes/comentarios');
 var adminRouter = require('./routes/admin');
 var cadastroRouter = require('./routes/cadastro');
+var avaliacaoRouter = require('./routes/avaliacao');
 
 var app = express();
 
@@ -55,6 +56,7 @@ app.use('/', cadastro_loginRouter);
 app.use('/comentarios', comentariosRouter);
 app.use('/admin', adminRouter);
 app.use('/cadastro', cadastroRouter);
+app.use('/avaliacao', avaliacaoRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
