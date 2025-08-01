@@ -1,39 +1,18 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../config/database');
+const { cadastro } = require('../models/user_model')
 
 // Rota de registro
 router.post('/register', async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
-    db.query('SELECT * FROM users WHERE email = ?', [email], (err, results) => {
-      if (err) {
-        console.error('Erro ao verificar usuário:', err);
-        return res.status(500).json({ message: 'Erro interno do servidor' });
-      }
+    req.session.userId = await cadastro(name, email, password);
+    req.session.userName = name;
+    req.session.userEmail = email;
 
-      if (results.length > 0) {
-        return res.status(400).json({ message: 'Email já cadastrado' });
-      }
-
-      db.query(
-        'INSERT INTO users (name, email, password) VALUES (?, ?, ?)',
-        [name, email, password],
-        (err, results) => {
-          if (err) {
-            console.error('Erro ao cadastrar usuário:', err);
-            return res.status(500).json({ message: 'Erro ao cadastrar usuário' });
-          }
-
-          req.session.userId = results.insertId;
-          req.session.userName = name;
-          req.session.userEmail = email;
-
-          res.redirect('/home');
-        }
-      );
-    });
+    res.redirect('/home');
   } catch (error) {
     console.error('Erro no registro:', error);
     res.status(500).json({ message: 'Erro interno do servidor' });
