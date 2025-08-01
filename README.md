@@ -9,7 +9,6 @@ CivicWatch é uma plataforma digital voltada ao monitoramento de atividades de f
 ## 👨‍💻 Integrantes da equipe
 
 - Igor Thiago Seberino
-- Adrian Cesar Gonçalves
 
 ## 💻 Como executar o projeto
 
